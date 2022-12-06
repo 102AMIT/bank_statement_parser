@@ -1,0 +1,14 @@
+{
+  "name": "bank_statement_parser",
+  "version": "1.0.0",
+  "description": "\"Change pdf in tabular formet\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "\"Amit\"",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
