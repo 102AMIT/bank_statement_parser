@@ -4,7 +4,8 @@ const mongoose=require('mongoose');
 const pdfSchema=new mongoose.Schema({
     file_name:{
         type: String
-    }
+    },
+   
 });
 
 
