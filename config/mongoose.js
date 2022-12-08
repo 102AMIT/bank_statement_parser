@@ -1,8 +1,9 @@
 
+
 // basic setup for mongoose
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/pdfConverter');
+mongoose.connect(process.env.DBURL);
 
 const db = mongoose.connection;
 

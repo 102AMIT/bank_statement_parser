@@ -1,7 +1,8 @@
+require('dotenv').config();
 const bodyParser = require('body-parser');
 const express =require('express');
-const PORT=8000;
 const app=express();
+const port=process.env.PORT || 8000;
 const db=require('./config/mongoose');
 
 
@@ -18,10 +19,10 @@ app.use('/',require('./routes'));
 
 
 
-app.listen(PORT,function(err){
+app.listen(port,function(err){
     if(err){
         console.log(`Error in Server Running `);
     }
-    console.log(`Server Running On PORT : ${PORT}`);
+    console.log(`Server Running On PORT : ${port}`);
     
 })
