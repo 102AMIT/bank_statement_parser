@@ -5,6 +5,9 @@ const pdf = require('pdf-parse');
 const path=require('path');
 
 
+
+
+
 // Create the file and store in Database 
 module.exports.create = function (req, res) {
   
@@ -35,18 +38,17 @@ module.exports.create = function (req, res) {
 
 
 module.exports.readPdf=function(req,res){
-    // creating a array for sotring the data 
-      const results = [];
-      // finding the data in csvSchema means Data Base 
+    
+      
+      // finding the data in pdfSchema means Data Base 
       pdfSchema.findById(req.params.id,function(err,docs){
-        console.log(docs);
         if(err){
           console.log("Error ! ....",err);
           return;
         }
         // here we are joining the path and store in coolPath
-        const coolPath = path.join(__dirname ,'..' ,'/images/'+docs.file_name);
-
+        const coolPath = path.join(__dirname ,'..' ,'/pdf_file/'+docs.file_name);
+        
         
         
         let dataBuffer = fs.readFileSync(coolPath);
@@ -57,9 +59,10 @@ module.exports.readPdf=function(req,res){
                 headers:data.text
             })
            
-           
-        
         });
+       
+
+
   
     });
       

@@ -23,9 +23,9 @@ var multerSigleUpload = multer({
     storage: multerStorage,
     fileFilter: (req, file, cb) => {
     var ext = path.extname(file.originalname);
-    console.log(ext);
     if(ext != '.pdf') {
-        return cb(new Error('Only pdf File Allowed'));
+        // return cb(new Error('Only pdf File Allowed'));
+         return cb(null,false)
     }
     // I want next function to validate real ext of files here. 
     cb(null, true);
