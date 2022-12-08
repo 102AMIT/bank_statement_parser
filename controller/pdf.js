@@ -1,11 +1,10 @@
-const pdfparser=require('pdf-parse');
 const pdfSchema=require('../model/pdf_upload');
 const pdfmulter=require('../config/multer');
+const fs = require('fs');
+const pdf = require('pdf-parse');
+const path=require('path');
 
-const data={url: "mongodb://localhost/",
-  database: "pdfConverter",
-  named:'pdf-uploads'
-}
+
 // Create the file and store in Database 
 module.exports.create = function (req, res) {
   
@@ -17,7 +16,7 @@ module.exports.create = function (req, res) {
         return res.send(`<h3>Not a pdf File! please go back and  select a pdf file then upload</h3>`);
       }
       if(req.file){
-      console.log(req.file);
+      // console.log(req.file);
 
         // create and Store the file in dataBase 
         pdfSchema.create({file_name: req.file.filename});
@@ -40,13 +39,27 @@ module.exports.readPdf=function(req,res){
       const results = [];
       // finding the data in csvSchema means Data Base 
       pdfSchema.findById(req.params.id,function(err,docs){
-  
+        console.log(docs);
         if(err){
           console.log("Error ! ....",err);
           return;
         }
         // here we are joining the path and store in coolPath
-      
+        const coolPath = path.join(__dirname ,'..' ,'/images/'+docs.file_name);
+
+        
+        
+        let dataBuffer = fs.readFileSync(coolPath);
+        
+        pdf(dataBuffer).then(function(data) {
+           
+            res.render('table',{
+                headers:data.text
+            })
+           
+           
+        
+        });
   
     });
       
