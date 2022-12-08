@@ -42,6 +42,7 @@ module.exports.readPdf=function(req,res){
       
       // finding the data in pdfSchema means Data Base 
       pdfSchema.findById(req.params.id,function(err,docs){
+
         if(err){
           console.log("Error ! ....",err);
           return;
@@ -54,7 +55,6 @@ module.exports.readPdf=function(req,res){
         let dataBuffer = fs.readFileSync(coolPath);
         
         pdf(dataBuffer).then(function(data) {
-           
             res.render('table',{
                 headers:data.text
             })
