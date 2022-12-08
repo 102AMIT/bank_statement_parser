@@ -5,7 +5,7 @@ const app=express();
 const db=require('./config/mongoose');
 
 
-app.use('/images', express.static(__dirname + '/uploads'));
+
 // for parsing the data 
 app.use(bodyParser.urlencoded({extended:true}));
 

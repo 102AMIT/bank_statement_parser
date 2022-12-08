@@ -3,13 +3,12 @@ const path=require('path');
 		
 // For Multer Storage
 
-// define the path of the database 
 
 var multerStorage = multer.diskStorage({
   // Here we set the destination where our file is displayed 
   
   destination: function (req, file, callback) {
-    callback(null, path.join(__dirname,'..','images'));
+    callback(null, path.join(__dirname,'..','pdf_file'));
   },
   // Set the file for Db with current date +File name it's diaplay in our dataBase 
   filename: function (req, file, callback) {
